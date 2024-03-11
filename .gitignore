@@ -1,0 +1,10 @@
+# dev
+.gitignore
+__pycache__/
+env_eng
+
+# notebookds and scripts output
+dummy_class.py
+test_modules.ipynb
+mymodules/
+

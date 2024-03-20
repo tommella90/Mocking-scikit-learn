@@ -26,3 +26,6 @@ def _get_feature_names(X):
         feature_names = np.asarray(df_column_names)
     if feature_names is None or len(feature_names) == 0:
         raise ValueError("Could not determine feature names")
+    return feature_names
+
+

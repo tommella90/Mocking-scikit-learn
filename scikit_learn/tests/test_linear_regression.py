@@ -2,7 +2,7 @@
 #%%
 import numpy as np
 
-from ..base_estimator import BaseEstimator
+from ..base import BaseEstimator
 from ..linear_regression import LinearRegression
 
 def test_fit(): 

@@ -1,8 +1,8 @@
 #%%
 import numpy as np
-from ..base_estimator import BaseEstimator
+from ..base import BaseEstimator, RegressorMixin
 
-class LinearRegression(BaseEstimator):
+class LinearRegression(BaseEstimator, RegressorMixin):
 
     def __init__(self):
         self.coef_ = None
@@ -16,8 +16,24 @@ class LinearRegression(BaseEstimator):
         self.intercept_ = beta[0]
         self.coef_ = beta[1:]
 
-    def predict(self, X):
+
+        if self.coef_ is None or self.intercept_ is None:
+            raise ValueError("LinearRegression is not fitted yet")
+
+        return self
+
+    def predict(self, X, return_params_as_tuple=False):
         # For simplicity, let's assume X is a 2D numpy array
         # Use the learned coefficients and intercept to make predictions
+        X = self._validate_data(X)
+
+        if self.coef_ is None or self.intercept_ is None:
+            raise ValueError("LinearRegression is not fitted yet")
+        
+        if return_params_as_tuple:
+            PARAMS = (self.coef_, self.intercept_)
+            return np.dot(X, self.coef_) + self.intercept_, PARAMS
+
         return np.dot(X, self.coef_) + self.intercept_
+
 

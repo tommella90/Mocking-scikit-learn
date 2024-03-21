@@ -9,8 +9,8 @@ class StandardScaler(BaseEstimator, TransformerMixin):
     def __init__(self, attr1=False, attr2=False): 
         self.mean_ = None
         self.std_ = None
-        self.attr1 = False
-        self.attr2 = False
+        self.attr1 = attr1
+        self.attr2 = attr2
 
     def _reset(self):
         self.mean_ = None
@@ -21,8 +21,6 @@ class StandardScaler(BaseEstimator, TransformerMixin):
         self._reset()
         X = self._validate_data(X)
         self.mean_, self.std_ = _mean_std_axis0(X, weights=None)
-        if self.print:
-            print(f"mean: {self.mean_}, std: {self.std_}")
         return self
 
     def transform(self, X, y=None):
